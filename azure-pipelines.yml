@@ -1,0 +1,16 @@
+trigger:
+- main
+
+pool:
+  vmImage: windows-2019
+
+steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: 'Install-Module -Name PSScriptAnalyzer -Force'
+      
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: 'Invoke-ScriptAnalyzer -Path .\folder -Recurse'
